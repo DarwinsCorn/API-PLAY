@@ -15,16 +15,18 @@ async function pokemon(num) {
     const pokeRaw = await fetch(`https://pokeapi.co/api/v2/pokemon/${num}/`);
     const poke = await pokeRaw.json();
     mainHead.textContent = poke.name.toUpperCase();
-    image.src = poke.sprites.other.dream_world.front_default;
+    image.src = poke.sprites.other.dream_world.front_default ?? "default.png";
     image.alt = poke.name;
     spanHeight.textContent = ` ${poke.height} dm`;
     spanWeight.textContent = ` ${poke.weight} hg`;
-    // spanAbility.textContent = ` ${poke.abilities[0].ability.name}`;
-    poke.abilities.forEach(abil=>spanAbility.textContent += ` ${abil.ability.name}, `);
+    spanAbility.textContent = ``;
+    poke.abilities.forEach((abil,ix,a)=> ix === a.length-1 ? spanAbility.textContent += ` ${abil.ability.name} ` : spanAbility.textContent += ` ${abil.ability.name}, `);
     spanHeight.style = "color: gray";
     spanWeight.style = "color: gray";
     spanAbility.style = "color: gray";
 }
+
+
 
 function createEle(element,content,parent) {
     const ele = document.createElement(`${element}`);
