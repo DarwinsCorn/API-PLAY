@@ -20,7 +20,7 @@ async function pokemon(num) {
     spanHeight.textContent = ` ${poke.height} dm`;
     spanWeight.textContent = ` ${poke.weight} hg`;
     spanAbility.textContent = ``;
-    poke.abilities.forEach((abil,ix,a)=> ix === a.length-1 ? spanAbility.textContent += ` ${abil.ability.name} ` : spanAbility.textContent += ` ${abil.ability.name}, `);
+    poke.abilities.forEach((abil,ix,a)=>spanAbility.textContent += ` ${abil.ability.name}${ix === a.length-1 ?"":", "}`);
     spanHeight.style = "color: gray";
     spanWeight.style = "color: gray";
     spanAbility.style = "color: gray";
